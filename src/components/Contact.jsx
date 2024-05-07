@@ -14,11 +14,11 @@ const Contact = () => {
                     <div className="col-span-5">
                         <div className="font-medium space-y-2">
                             <address className="not-italic">
-                                100 Main St, Blacktown NSW 2148,<br/>
+                                4 Ah Mat St, Woolner NT 0820,<br/>
                                 Australia
                             </address>
-                            <p>support@bold.com, info@youremail.com</p>
-                            <p>+256-4516-556, +(257) 56812749</p>
+                            <p>iryna@vasilkoff.com, ira.vasilkova@gmail.com</p>
+                            <p>+(61) 468 458 575, +(357) 96 851 613</p>
                         </div>
 
                         <SocialMedia className="mt-6 md:mt-10"/>

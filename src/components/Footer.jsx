@@ -12,8 +12,8 @@ const Footer = () => {
 
                     {/* Copyright */}
                     <p>
-                        &copy; Rokstar {new Date().getFullYear()}, Made with <AiFillHeart
-                        className="inline text-red-600"/> By Divergent Studio.
+                        &copy; Vasilkoff 2012 - {new Date().getFullYear()}, Made with <AiFillHeart
+                        className="inline text-red-600"/> By <a href="https://vasilkoff.com/team/iryna-vasilkova" target="_blank" >Iryna Vasylkova</a>.
                     </p>
                 </div>
             </div>
