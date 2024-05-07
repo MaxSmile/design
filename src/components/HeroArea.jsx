@@ -11,8 +11,8 @@ const HeroArea = () => {
         >
             <div className="container">
                 <div className="mt-8 font-light">
-                    <h1 className="text-white font-light text-3xl sm:text-[45px] md:text-[55px] leading-none">I'M LUCY DOE</h1>
-                    <h2 className="text-white font-light text-md sm:text-lg tracking-4 mt-2 sm:mt-4">WEB DEVELOPER</h2>
+                    <h1 className="text-white font-light text-3xl sm:text-[45px] md:text-[55px] leading-none uppercase">I'm Iryna Vasylkova</h1>
+                    <h2 className="text-white font-light text-md sm:text-lg tracking-4 mt-2 sm:mt-4">Graphic Designer</h2>
                 </div>
             </div>
 
