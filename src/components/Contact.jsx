@@ -14,8 +14,7 @@ const Contact = () => {
                     <div className="col-span-5">
                         <div className="font-medium space-y-2">
                             <address className="not-italic">
-                                4 Ah Mat St, Woolner NT 0820,<br/>
-                                Australia
+                                Australia NT
                             </address>
                             <p>iryna@vasilkoff.com, ira.vasilkova@gmail.com</p>
                             <p>+(61) 468 458 575, +(357) 96 851 613</p>

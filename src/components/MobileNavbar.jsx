@@ -10,7 +10,7 @@ const MobileNavbar = ({className}) => {
                         <Link
                             spy={true}
                             smooth={true}
-                            to={item.href}
+                            to={item.href || "#"}
                             data-hover={item.name.toLowerCase()}
                             className={`block text-white font-medium text-sm relative cursor-pointer py-1 px-3 duration-400 hover:bg-white hover:text-dark`}
                         >

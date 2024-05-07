@@ -13,13 +13,13 @@
     "@emailjs/browser": "^3.6.2",
     "cogo-toast": "^4.2.3",
     "hamburger-react": "^2.5.0",
-    "next": "latest",
+    "next": "^14.2.3",
     "prop-types": "^15.8.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-icons": "^4.3.1",
-    "react-modal-video": "^1.2.8",
-    "react-scroll": "^1.8.7"
+    "react-modal-video": "latest",
+    "react-scroll": "latest"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.0",

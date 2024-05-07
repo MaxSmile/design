@@ -6,25 +6,19 @@
       "id": 1,
       "media": "facebook",
       "icon": "FaFacebookF",
-      "link": "https://fb.com/username"
+      "link": "https://fb.com/irina.vasylkova"
     },
     {
       "id": 2,
-      "media": "twitter",
-      "icon": "FaTwitter",
-      "link": "https://twitter.com/username"
+      "media": "instagram",
+      "icon": "FaInstagram",
+      "link": "https://instagram.com/omorfi5"
     },
     {
       "id": 3,
       "media": "linkedin",
       "icon": "FaLinkedinIn",
-      "link": "https://linkedin.com/in/username"
-    },
-    {
-      "id": 4,
-      "media": "github",
-      "icon": "FaGithub",
-      "link": "https://github.com/username"
+      "link": "https://www.linkedin.com/in/irina-vasylkova/"
     }
   ]
 }

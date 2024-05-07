@@ -10,7 +10,7 @@ const Navbar = ({className}) => {
                     <li key={item.id}>
                         {checkExternalLink(item.href) ? (
                             <a
-                                href={item.href} target="_blank"
+                                href={item.href || "#"} target="_blank"
                                 data-hover={item.name.toLowerCase()}
                                 className={`block text-white font-medium text-sm relative cursor-pointer after:duration-300 ${navItemHoverStyle}`}
                             >
