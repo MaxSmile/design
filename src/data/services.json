@@ -1,20 +1,20 @@
 [
   {
     "id": 1,
-    "title": "Web Design",
-    "desc": "I brought to just trying that with my boss; I'd get kicked out on the spot. But who knows would be the best",
+    "title": "Figma",
+    "desc": "As a graphic designer who works on Figma, I merge creativity with precision, crafting visually compelling designs that resonate with my audience. My expertise in Figma enables me to bring concepts to life, delivering innovative and polished digital experiences",
     "icon": "service-web-design.png"
   },
   {
     "id": 2,
-    "title": "Illustrator",
-    "desc": "That a brought to just try with my boss; I'd get out the spot. But who know maybe that would be best",
+    "title": "Web Design",
+    "desc": "With a strong background in web design, I create websites that are both visually appealing and user-friendly, focusing on intuitive interfaces that engage and resonate with users",
     "icon": "service-illustrator.png"
   },
   {
     "id": 3,
     "title": "Branding Identity",
-    "desc": "Brought a to just try that with my boss; I'd get kicked out on the spot. But who's knows maybe the better",
+    "desc": "Developing a strong branding identity is crucial for businesses to stand out and connect with their target audience effectively. With my extensive experience in brand identity development, I ensure brands not only visually appeal but also communicate their unique story and values authentically",
     "icon": "service-branding.png"
   }
 ]
