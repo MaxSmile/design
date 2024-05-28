@@ -4,7 +4,7 @@
     "title": "Portfolio 1",
     "categories": ["marketing"],
     "thumb": "01.jpg",
-    "featuredVideo": true,
+    "featuredVideo": false,
     "videoLink": "https://www.youtube.com/watch?v=Hl3ZnQp4_S0"
   },
   {

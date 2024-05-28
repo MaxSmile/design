@@ -3,12 +3,13 @@ import NextImage from "next/image";
 const Image = ({src, ...props}) => {
     return (
         <>
-            <div className="w-full custom-image grayscale transition duration-200 hover:grayscale-0">
+            <div className="w-full custom-image lg:grayscale transition duration-200 hover:grayscale-0">
                 <NextImage
                     src={src}
-                    layout="fill"
                     objectFit="contain"
                     className="!w-full !relative !h-unset"
+                    width={600}
+                    height={600}
                     {...props}
                 />
             </div>

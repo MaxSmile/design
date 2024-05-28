@@ -9,6 +9,8 @@ const Service = ({thumb, title, desc, className}) => {
                 <Image
                     src={thumb}
                     alt={title}
+                    width={32}
+                    height={32}
                 />
             </div>
 

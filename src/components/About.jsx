@@ -11,9 +11,9 @@ const AboutMe = () => {
                     title="About Me"
                     className="lg:hidden"
                 />
-
+                
                 <div className="md:grid grid-cols-12 items-center">
-                    <div className="col-span-4 sm:text-center md:text-left">
+                    <div className="col-span-4 sm:text-center md:text-left lg:grayscale transition duration-200 hover:grayscale-0">
                         <div className="inline-block md:block leading-none drop-shadow-thumb relative sm:before:absolute sm:before:bottom-[-20px] lg:before:bottom-[-45px] sm:before:right-[-25px] sm:before:border-2 sm:before:border-white-light sm:before:h-full sm:before:w-[calc(100%-20px)] sm:before:rounded-br-3xl">
                             <Image
                                 width={350}
