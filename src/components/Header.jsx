@@ -29,7 +29,7 @@ const Header = () => {
                     <Navbar/>
 
                     {/* Mobile Navbar */}
-                   <MobileNavbar className={!isMobileNavShow ? "mt-0 h-0":"mt-3 h-[130px]"}/>
+                   <MobileNavbar className={!isMobileNavShow ? "mt-0 h-0":"mt-3 h-[160px]"}/>
                 </div>
             </div>
 

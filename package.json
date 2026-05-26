@@ -10,22 +10,25 @@
     "start": "next start"
   },
   "dependencies": {
-    "@emailjs/browser": "^3.6.2",
-    "cogo-toast": "^4.2.3",
-    "hamburger-react": "^2.5.0",
-    "next": "14.2.35",
+    "@cap.js/widget": "^0.1.41",
+    "@emailjs/browser": "^4.4.1",
+    "hamburger-react": "^2.5.2",
+    "next": "16.2.6",
     "prop-types": "^15.8.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-icons": "^4.3.1",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "react-icons": "^5.6.0",
     "react-modal-video": "latest",
-    "react-scroll": "latest"
+    "react-scroll": "latest",
+    "sonner": "^2.0.7"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.0",
-    "postcss": "^8.4.5",
-    "prettier": "^2.5.1",
-    "prettier-plugin-tailwindcss": "^0.1.1",
-    "tailwindcss": "^3.0.7"
-  }
+    "@tailwindcss/postcss": "^4.3.0",
+    "autoprefixer": "^10.5.0",
+    "postcss": "^8.5.15",
+    "prettier": "^3.8.3",
+    "prettier-plugin-tailwindcss": "^0.8.0",
+    "tailwindcss": "^4.3.0"
+  },
+  "packageManager": "yarn@4.15.0"
 }

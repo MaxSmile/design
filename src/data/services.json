@@ -1,20 +1,23 @@
 [
   {
     "id": 1,
-    "title": "Figma",
-    "desc": "As a graphic designer who works on Figma, I merge creativity with precision, crafting visually compelling designs that resonate with my audience. My expertise in Figma enables me to bring concepts to life, delivering innovative and polished digital experiences",
-    "icon": "service-web-design.png"
+    "title": "UI / UX Design",
+    "desc": "End-to-end interface design for web and mobile — from user flows and wireframes to pixel-perfect Figma prototypes ready for dev handoff.",
+    "tags": ["Figma", "Prototyping", "Design systems"],
+    "icon": "ui-ux"
   },
   {
     "id": 2,
     "title": "Web Design",
-    "desc": "With a strong background in web design, I create websites that are both visually appealing and user-friendly, focusing on intuitive interfaces that engage and resonate with users",
-    "icon": "service-illustrator.png"
+    "desc": "Visually compelling websites built for conversion — from corporate landing pages to crypto project sites and SaaS dashboards.",
+    "tags": ["WordPress", "Astro", "React"],
+    "icon": "web"
   },
   {
     "id": 3,
-    "title": "Branding Identity",
-    "desc": "Developing a strong branding identity is crucial for businesses to stand out and connect with their target audience effectively. With my extensive experience in brand identity development, I ensure brands not only visually appeal but also communicate their unique story and values authentically",
-    "icon": "service-branding.png"
+    "title": "Brand Identity",
+    "desc": "Logo design, visual systems, and brand guidelines that give products a consistent, memorable presence across every touchpoint.",
+    "tags": ["Illustrator", "Brand guidelines", "Print"],
+    "icon": "brand"
   }
 ]

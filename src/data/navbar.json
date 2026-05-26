@@ -16,6 +16,11 @@
   },
   {
     "id": 4,
+    "name": "Reviews",
+    "href": "testimonials"
+  },
+  {
+    "id": 5,
     "name": "Contact",
     "href": "contact"
   }

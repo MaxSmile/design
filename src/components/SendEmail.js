@@ -1,27 +1,58 @@
 // src/components/SendEmail.js
-import cogoToast from "cogo-toast";
+import { toast } from "sonner";
 import emailjs from '@emailjs/browser';
 
-export function SendEmail(e, humanTestCode, noForVerify, form, setSubmitting, setNoForVerify) {
-    e.preventDefault();
-    if (parseInt(humanTestCode) === (11 + noForVerify)) {
-        setSubmitting(true);
+const CAP_API_ENDPOINT = process.env.NEXT_PUBLIC_CAP_API_ENDPOINT || "https://vasilkoff.info/cap/";
 
-        emailjs.sendForm(process.env.NEXT_PUBLIC_SERVICE_ID, process.env.NEXT_PUBLIC_TEMPLATE_ID, form.current, process.env.NEXT_PUBLIC_PUBLIC_KEY)
-            .then((result) => {
-                cogoToast.success("Thanks for Contacting Us!", {
-                    hideAfter: 5,
-                });
-                setSubmitting(false);
-                form.current.reset();
-                setNoForVerify(Math.round(Math.random() * 11)); // Update the verification number after successful submission
-            }, (error) => {
-                cogoToast.error("Failed to send message: " + error.text, { hideAfter: 5 });
-                setSubmitting(false);
-            });
-    } else {
-        cogoToast.error("Addition didn't match!", {
-            hideAfter: 5
-        });
+const getCapUrl = (path) => {
+    const endpoint = CAP_API_ENDPOINT.endsWith("/") ? CAP_API_ENDPOINT : `${CAP_API_ENDPOINT}/`;
+    return `${endpoint}${path}`;
+};
+
+const verifyCapToken = async (token) => {
+    if (!token) {
+        return false;
+    }
+
+    const response = await fetch(getCapUrl("verify"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token }),
+    });
+    const data = await response.json().catch(() => ({}));
+    return response.ok && data.success;
+};
+
+export async function SendEmail(e, capToken, form, setSubmitting, resetCap) {
+    e.preventDefault();
+    if (!capToken) {
+        toast.error("Please complete the human check.");
+        return;
+    }
+
+    setSubmitting(true);
+
+    try {
+        const verified = await verifyCapToken(capToken);
+        if (!verified) {
+            toast.error("Human verification expired. Please retry.");
+            resetCap();
+            return;
+        }
+
+        await emailjs.sendForm(
+            process.env.NEXT_PUBLIC_SERVICE_ID,
+            process.env.NEXT_PUBLIC_TEMPLATE_ID,
+            form.current,
+            process.env.NEXT_PUBLIC_PUBLIC_KEY
+        );
+        toast.success("Thanks for Contacting Us!");
+        form.current.reset();
+        resetCap();
+    } catch (error) {
+        toast.error(error?.text ? `Failed to send message: ${error.text}` : "Failed to send message. Please try again.");
+        resetCap();
+    } finally {
+        setSubmitting(false);
     }
 };

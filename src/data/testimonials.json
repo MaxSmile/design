@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "quote": "I have been working with Vasilkoff Ltd for a long time now and I am very happy with the professionalism and experience their team has. I strongly recommend them as we build a long lasting relationship based on trust.",
+    "name": "Neofytos Siakos",
+    "role": "CEO",
+    "company": "Spindeals App",
+    "companyUrl": "https://www.spindealsapp.com/",
+    "initials": "NS"
+  },
+  {
+    "id": 2,
+    "quote": "I've challenged Vasilkoff several times over the past couple of years with a variety of projects. They have always pulled through for me and gone above and beyond to get the project done. It's hard to find consistent quality work, Vasilkoff hits the nail on the head, every time.",
+    "name": "Justin Farrell",
+    "role": "CEO",
+    "company": "Cowts",
+    "companyUrl": "https://cowts.com/",
+    "initials": "JF"
+  }
+]

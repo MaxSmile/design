@@ -1,7 +1,5 @@
-import Shape from "./Shape";
+import { useEffect, useState } from "react";
 import Portfolio from "./Portfolio";
-import {useEffect, useState} from "react";
-import SectionTitle from "./SectionTitle";
 import portfolios from "../data/portfolios.json";
 
 const Portfolios = () => {
@@ -10,37 +8,43 @@ const Portfolios = () => {
     const [filteredPortfolios, setFilteredPortfolios] = useState([...portfolios]);
 
     const onFilterHandler = (event) => {
-        const target = event.target;
+        const target = event.currentTarget; // use currentTarget to ensure we get the button
         const value = target.dataset.filter;
         setFilterValue(value);
-        const portfolioFiltered = portfolios.map(portfolio => {
-            return {
-                ...portfolio,
-                category: portfolio.categories.find(cate => cate === value)
-            }
-        }).filter(item => item.category === value);
-
-        value === "*" ? setFilteredPortfolios(portfolios) : setFilteredPortfolios(portfolioFiltered);
+        
+        if (value === "*") {
+            setFilteredPortfolios(portfolios);
+        } else {
+            const portfolioFiltered = portfolios.filter(portfolio => 
+                portfolio.categories.includes(value)
+            );
+            setFilteredPortfolios(portfolioFiltered);
+        }
     };
 
-
     useEffect(() => {
-        const filteredCategories = portfolios.map(portfolio => portfolio.categories);
+        const filteredCategories = portfolios.map((portfolio) => portfolio.categories);
         const uniqueCategories = [...new Set(filteredCategories.flat())];
-        setCategories(uniqueCategories);
+        const desiredOrder = ["Marketing", "Web", "UI/UX", "Mobile", "Graphics"];
+        const sortedCategories = desiredOrder
+            .filter((category) => uniqueCategories.includes(category))
+            .concat(uniqueCategories.filter((category) => !desiredOrder.includes(category)));
+
+        setCategories(sortedCategories);
     }, []);
 
-
     return (
-        <section className="bg-gray-50 relative pt-[100px] pb-[100px] lg:pb-[200px]" id="portfolio">
+        <section className="relative bg-[#f8f9fb] pt-[90px] pb-[100px] lg:pb-[140px]" id="portfolio">
             <div className="container">
-                <SectionTitle title="Portfolios"/>
-
-                <nav className="mb-10 space-x-5">
+                <nav className="mb-14 flex flex-wrap items-start gap-x-8 gap-y-4">
                     <button
                         data-filter="*"
-                        onClick={(event) => onFilterHandler(event)}
-                        className={`${filterNavItemStyle} ${filterValue === "*" ? filterNavItemActiveStyle : ""}`}
+                        onClick={onFilterHandler}
+                        className={`relative cursor-pointer bg-transparent px-0 pb-5 text-xl font-semibold leading-none text-dark transition duration-200 md:text-2xl ${
+                            filterValue === "*"
+                                ? "text-dark after:absolute after:left-1/2 after:bottom-0 after:h-2 after:w-2 after:-translate-x-1/2 after:rounded-full after:bg-slate-500"
+                                : "text-dark/80 hover:text-dark"
+                        }`}
                     >
                         All
                     </button>
@@ -48,33 +52,33 @@ const Portfolios = () => {
                         <button
                             key={category}
                             data-filter={category}
-                            onClick={(event) => onFilterHandler(event)}
-                            className={`${filterNavItemStyle} ${filterValue === category ? filterNavItemActiveStyle : ""}`}
+                            onClick={onFilterHandler}
+                            className={`relative cursor-pointer bg-transparent px-0 pb-5 text-xl font-semibold leading-none text-dark transition duration-200 md:text-2xl ${
+                                filterValue === category
+                                    ? "text-dark after:absolute after:left-1/2 after:bottom-0 after:h-2 after:w-2 after:-translate-x-1/2 after:rounded-full after:bg-slate-500"
+                                    : "text-dark/80 hover:text-dark"
+                            }`}
                         >
                             {category}
                         </button>
                     ))}
                 </nav>
 
-                <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-7">
+                <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
                     {filteredPortfolios.map(portfolio => (
                         <Portfolio
                             key={portfolio.id}
+                            id={portfolio.id}
                             title={portfolio.title}
-                            videoLink={portfolio.videoLink}
-                            featuredVideo={portfolio.featuredVideo}
-                            thumb={`/images/portfolio/${portfolio.thumb}`}
+                            subtitle={portfolio.subtitle}
+                            tag={portfolio.tag}
+                            image={portfolio.image}
                         />
                     ))}
                 </div>
             </div>
-
-            <Shape/>
         </section>
     );
 };
-
-const filterNavItemStyle = "text-black capitalize font-medium relative";
-const filterNavItemActiveStyle = "after:absolute after:h-[6px] after:w-[6px] after:rounded-full after:bg-slate-700 after:left-1/2 after:-translate-x-1/2 after:-bottom-1";
 
 export default Portfolios;
