@@ -7,7 +7,7 @@ const HeroArea = () => {
         <section
             id="hero"
             style={{backgroundImage: `url(${heroBg})`}}
-            className="relative bg-cover bg-no-repeat bg-center-top h-[300px] sm:h-[450px] md:h-[500px] lg:h-[600px] xl:h-[800px] flex items-center"
+            className="relative bg-cover bg-no-repeat bg-[position:58%_top] h-[360px] sm:h-[450px] sm:bg-center-top md:h-[500px] lg:h-[600px] xl:h-[800px] flex items-center"
         >
             <div className="container">
                 <div className="mt-8 font-light">
