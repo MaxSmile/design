@@ -63,17 +63,23 @@ export default async function handler(req, res) {
     const brevoData = await brevoResponse.json().catch(() => ({}));
 
     if (!brevoResponse.ok) {
+      console.error("BREVO email send failed:", {
+        status: brevoResponse.status,
+        body: brevoData,
+      });
+
       return res.status(502).json({
         success: false,
-        message: brevoData?.message || "Failed to send email.",
+        message: "Failed to send message.",
       });
     }
 
     return res.status(200).json({ success: true, message: "Message sent successfully" });
   } catch (error) {
+    console.error("Contact API send failed:", error);
     return res.status(500).json({
       success: false,
-      message: error?.message || "Failed to send message.",
+      message: "Failed to send message.",
     });
   }
 }
