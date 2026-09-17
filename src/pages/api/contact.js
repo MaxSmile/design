@@ -31,25 +31,44 @@ export default async function handler(req, res) {
     const capRawBody = await capCheck.text().catch(() => "");
 
     if (!capCheck.ok || capRawBody === "") {
-      console.error("CAPTCHA verification failed:", {
-        status: capCheck.status,
-        statusText: capCheck.statusText,
-        body: capRawBody,
+      return res.status(400).json({
+        success: false,
+        message: "Failed to send message.",
+        debug: {
+          source: "cap_verify",
+          status: capCheck.status,
+          statusText: capCheck.statusText,
+          rawBody: capRawBody,
+        },
       });
-      return res.status(400).json({ success: false, message: "Failed to send message." });
     }
 
     let capData = {};
     try {
       capData = JSON.parse(capRawBody);
     } catch (error) {
-      console.error("CAPTCHA verification response was not valid JSON:", capRawBody);
-      return res.status(400).json({ success: false, message: "Failed to send message." });
+      return res.status(400).json({
+        success: false,
+        message: "Failed to send message.",
+        debug: {
+          source: "cap_verify",
+          status: capCheck.status,
+          statusText: capCheck.statusText,
+          rawBody: capRawBody,
+          parseError: String(error),
+        },
+      });
     }
 
     if (!capData?.success) {
-      console.error("CAPTCHA verification rejected:", capData);
-      return res.status(400).json({ success: false, message: "Failed to send message." });
+      return res.status(400).json({
+        success: false,
+        message: "Failed to send message.",
+        debug: {
+          source: "cap_verify",
+          data: capData,
+        },
+      });
     }
 
     const emailHtml = `
@@ -82,12 +101,11 @@ export default async function handler(req, res) {
 
     if (!brevoResponse.ok) {
       const brevoDebug = {
+        source: "brevo",
         status: brevoResponse.status,
         statusText: brevoResponse.statusText,
         rawBody: brevoRawBody,
       };
-
-      console.error("BREVO email send failed:", brevoDebug);
 
       return res.status(502).json({
         success: false,
@@ -98,11 +116,13 @@ export default async function handler(req, res) {
 
     return res.status(200).json({ success: true, message: "Message sent successfully" });
   } catch (error) {
-    console.error("Contact API send failed:", error);
     return res.status(500).json({
       success: false,
       message: "Failed to send message.",
-      debug: { error: String(error) },
+      debug: {
+        source: "contact_handler",
+        error: error?.message || String(error),
+      },
     });
   }
 }

@@ -39,12 +39,13 @@ export async function SendEmail(e, capToken, form, setSubmitting, resetCap) {
         const data = await response.json().catch(() => ({}));
 
         if (!response.ok || !data.success) {
-            console.error("Contact submission failed", {
+            const technicalError = data?.debug ?? {
                 status: response.status,
                 statusText: response.statusText,
                 responseData: data,
-                rawBrevoAnswer: data?.debug,
-            });
+            };
+
+            console.error("Contact form technical error:", technicalError);
             throw new Error("Failed to send message.");
         }
 
@@ -52,7 +53,7 @@ export async function SendEmail(e, capToken, form, setSubmitting, resetCap) {
         form.current.reset();
         resetCap();
     } catch (error) {
-        console.error("Contact submission error", error);
+        console.error("Contact form caught error:", error);
         toast.error("Failed to send message. Please try again.");
         resetCap();
     } finally {
