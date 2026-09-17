@@ -39,14 +39,21 @@ export async function SendEmail(e, capToken, form, setSubmitting, resetCap) {
         const data = await response.json().catch(() => ({}));
 
         if (!response.ok || !data.success) {
-            throw new Error(data.message || "Failed to send message.");
+            console.error("Contact submission failed", {
+                status: response.status,
+                statusText: response.statusText,
+                responseData: data,
+                rawBrevoAnswer: data?.debug,
+            });
+            throw new Error("Failed to send message.");
         }
 
         toast.success("Thanks for contacting us!");
         form.current.reset();
         resetCap();
     } catch (error) {
-        toast.error(error?.message || "Failed to send message. Please try again.");
+        console.error("Contact submission error", error);
+        toast.error("Failed to send message. Please try again.");
         resetCap();
     } finally {
         setSubmitting(false);

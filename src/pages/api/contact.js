@@ -81,15 +81,18 @@ export default async function handler(req, res) {
     const brevoRawBody = await brevoResponse.text().catch(() => "");
 
     if (!brevoResponse.ok) {
-      console.error("BREVO email send failed:", {
+      const brevoDebug = {
         status: brevoResponse.status,
         statusText: brevoResponse.statusText,
-        body: brevoRawBody,
-      });
+        rawBody: brevoRawBody,
+      };
+
+      console.error("BREVO email send failed:", brevoDebug);
 
       return res.status(502).json({
         success: false,
         message: "Failed to send message.",
+        debug: brevoDebug,
       });
     }
 
@@ -99,6 +102,7 @@ export default async function handler(req, res) {
     return res.status(500).json({
       success: false,
       message: "Failed to send message.",
+      debug: { error: String(error) },
     });
   }
 }
