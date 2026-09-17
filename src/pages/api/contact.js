@@ -29,21 +29,27 @@ export default async function handler(req, res) {
     });
 
     const capRawBody = await capCheck.text().catch(() => "");
-    let capData = {};
 
-    try {
-      capData = capRawBody ? JSON.parse(capRawBody) : {};
-    } catch (error) {
-      capData = { rawBody: capRawBody };
-    }
-
-    if (!capCheck.ok || !capData?.success) {
+    if (!capCheck.ok || capRawBody === "") {
       console.error("CAPTCHA verification failed:", {
         status: capCheck.status,
         statusText: capCheck.statusText,
-        body: capRawBody || capData,
+        body: capRawBody,
       });
-      return res.status(400).json({ success: false, message: "Human verification failed" });
+      return res.status(400).json({ success: false, message: "Failed to send message." });
+    }
+
+    let capData = {};
+    try {
+      capData = JSON.parse(capRawBody);
+    } catch (error) {
+      console.error("CAPTCHA verification response was not valid JSON:", capRawBody);
+      return res.status(400).json({ success: false, message: "Failed to send message." });
+    }
+
+    if (!capData?.success) {
+      console.error("CAPTCHA verification rejected:", capData);
+      return res.status(400).json({ success: false, message: "Failed to send message." });
     }
 
     const emailHtml = `
@@ -73,19 +79,12 @@ export default async function handler(req, res) {
     });
 
     const brevoRawBody = await brevoResponse.text().catch(() => "");
-    let brevoData = {};
-
-    try {
-      brevoData = brevoRawBody ? JSON.parse(brevoRawBody) : {};
-    } catch (error) {
-      brevoData = { rawBody: brevoRawBody };
-    }
 
     if (!brevoResponse.ok) {
       console.error("BREVO email send failed:", {
         status: brevoResponse.status,
         statusText: brevoResponse.statusText,
-        body: brevoRawBody || brevoData,
+        body: brevoRawBody,
       });
 
       return res.status(502).json({
