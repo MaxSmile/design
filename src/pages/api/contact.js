@@ -28,9 +28,21 @@ export default async function handler(req, res) {
       body: JSON.stringify({ token: capToken }),
     });
 
-    const capData = await capCheck.json().catch(() => ({}));
+    const capRawBody = await capCheck.text().catch(() => "");
+    let capData = {};
+
+    try {
+      capData = capRawBody ? JSON.parse(capRawBody) : {};
+    } catch (error) {
+      capData = { rawBody: capRawBody };
+    }
 
     if (!capCheck.ok || !capData?.success) {
+      console.error("CAPTCHA verification failed:", {
+        status: capCheck.status,
+        statusText: capCheck.statusText,
+        body: capRawBody || capData,
+      });
       return res.status(400).json({ success: false, message: "Human verification failed" });
     }
 
@@ -60,12 +72,20 @@ export default async function handler(req, res) {
       }),
     });
 
-    const brevoData = await brevoResponse.json().catch(() => ({}));
+    const brevoRawBody = await brevoResponse.text().catch(() => "");
+    let brevoData = {};
+
+    try {
+      brevoData = brevoRawBody ? JSON.parse(brevoRawBody) : {};
+    } catch (error) {
+      brevoData = { rawBody: brevoRawBody };
+    }
 
     if (!brevoResponse.ok) {
       console.error("BREVO email send failed:", {
         status: brevoResponse.status,
-        body: brevoData,
+        statusText: brevoResponse.statusText,
+        body: brevoRawBody || brevoData,
       });
 
       return res.status(502).json({
