@@ -1,7 +1,6 @@
 import { toast } from "sonner";
 
-const CONTACT_API_ENDPOINT =
-    process.env.NEXT_PUBLIC_CONTACT_API_ENDPOINT || "https://vasilkoff.info/api/contact/telegram";
+const CONTACT_API_ENDPOINT = "/api/contact";
 
 export async function SendEmail(e, capToken, form, setSubmitting, resetCap) {
     e.preventDefault();
